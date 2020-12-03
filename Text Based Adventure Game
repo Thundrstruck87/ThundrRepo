@@ -1,6 +1,6 @@
 # This program is a text based story game that asks for user input. Story continues based from input
 #
-import time
+# import time
 story = False
 thanks: str = "Thanks for playing! I hope you enjoyed this text based story game."
 
@@ -12,10 +12,10 @@ answer = input("Are you ready to play? (y/n): ")
 if answer.casefold() == "y":
     # STORY BEGINS HERE
     print("Story begins")
-     time.sleep(2)
+    # time.sleep(2)
     print("...")
-     time.sleep(2)
-    print("\n" * 10)  # This will a clear screen of any previous code tyt4
+    # time.sleep(2)
+    print("\n" * 10)  # This will a clear screen of any previous code
     print("""    You have been sleeping for the past 8 hours recovering from the journey to a new star system.
     The spaceport that you're on suddenly shakes you awake. You start to wake up as the lights flicker on
     and off. Realizing something doesn't feel right, you start to wake up. You look around the room - there
