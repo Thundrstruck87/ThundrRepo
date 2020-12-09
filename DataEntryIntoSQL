@@ -35,40 +35,53 @@ conn.commit()
 
 # Menu starts below
 
-database = "carparts"
-print("Welcome to the program!")
-print()
-print("You are connected to {} database".format(database))
-print()
-print()
-print("The current columns in the table are...")
-print()
-conn = pyodbc.connect('Driver={SQL Server};'
-                      'Server=server_name;'
-                      'Database=carparts;'
-                      'Trusted_Connection=yes;')
+#answer = str(input("Would you like to enter in another? (yes/no): "))
+while answer.casefold() == "yes":
+  database = "carparts"
+  print("Welcome to the program!")
+  print()
+  print("You are connected to {} database".format(database))
+  print()
+  print()
+  print("The current columns in the table are...")
+  print()
+  conn = pyodbc.connect('Driver={SQL Server};'
+                        'Server=server_name;'
+                        'Database=carparts;'
+                        'Trusted_Connection=yes;')
 
-cursor = conn.cursor()
-cursor.execute('SELECT * FROM carparts.dbo.modifications where 1=2')
-headers = [i[0] for i in cursor.description]
-print(headers)
-print()
-print("Categories are: engine, suspension, exhaust, or transmission")
-print()
-category = str(input("Please enter category: "))
-print()
-description = str(input("Please enter the description of the part: "))
-print()
-purchase_date = input("Please enter the purchase date in (YYYY-MM-DD): ")
-print()
-price = int(input("Please enter the price amount: "))
-print()
-vehicle = str(input("What vehicle is this for? (Model): "))
-print()
-print("Thanks!")
-time.sleep(3)
-print("\n" * 5)  # This will the clear screen of any previous code
-print("Adding the category, description, purchase date, price, and vehicle to the table...")
-time.sleep(2)
+  cursor = conn.cursor()
+  cursor.execute('SELECT * FROM carparts.dbo.modifications where 1=2')
+  headers = [i[0] for i in cursor.description]
+  print(headers)
+  print()
+  print("Categories are: engine, suspension, exhaust, or transmission")
+  print()
+  category = str(input("Please enter category: "))
+  print()
+  description = str(input("Please enter the description of the part: "))
+  print()
+  purchase_date = input("Please enter the purchase date in (YYYY-MM-DD): ")
+  print()
+  price = int(input("Please enter the price amount: "))
+  print()
+  vehicle = str(input("What vehicle is this for? (Model): "))
+  print()
+  print("Thanks!")
+  time.sleep(3)
+  print("\n" * 5)  # This will the clear screen of any previous code
+  print("Adding the category, description, purchase date, price, and vehicle to the table...")
+  time.sleep(2)
 
-# This project is currently a work in progress and code will be added, removed and/or changed #
+  cursor.execute('''
+                    INSERT INTO carparts.dbo.modifications (category, description, purchase_date, price, vehicle)
+                    VALUES
+                    ('{}', '{}', '{}', '{}', '{}')
+                   '''.format(category, description, purchase_date, price, vehicle))
+    conn.commit()
+    print()
+    print("The data has been entered!")
+    print()
+    print(answer)
+else:
+    print("Thanks, have a great day!")
